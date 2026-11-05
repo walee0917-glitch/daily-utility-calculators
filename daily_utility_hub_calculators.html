@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniCalc Hub - Free Online Calculators, Tools & Guides</title>
+    <meta name="description" content="Free multi-purpose daily usage calculators for BMI, Finance, Discounts, Age, Percentages, and Fuel Costs along with expert financial & health guides.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .active-tab {
+            background-color: #2563eb;
+            color: #ffffff !important;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+        }
+        .ad-placeholder {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="flex items-center cursor-pointer" onclick="switchTab('calculators-hub')">
+                    <div class="bg-brand-600 text-white p-2.5 rounded-xl shadow-md mr-3">
+                        <i class="fa-solid font-bold fa-calculator text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold text-slate-900 tracking-tight">Omni<span class="text-brand-600">Calc</span></span>
+                        <span class="hidden sm:inline-block text-xs font-semibold px-2 py-0.5 bg-brand-50 text-brand-700 rounded-full ml-2">v2.5</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav Navigation -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-2 text-sm font-medium">
+                    <button onclick="switchTab('calculators-hub')" class="nav-btn px-3 py-2 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 transition active-tab" data-target="calculators-hub">
+                        <i class="fa-solid fa-grid-2 mr-1.5"></i>Calculators
+                    </button>
+                    <button onclick="switchTab('blog-hub')" class="nav-btn px-3 py-2 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 transition" data-target="blog-hub">
+                        <i class="fa-solid fa-newspaper mr-1.5"></i>Guides & Articles
+                    </button>
+                    <button onclick="switchTab('about')" class="nav-btn px-3 py-2 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 transition" data-target="about">About</button>
+                    <button onclick="switchTab('contact')" class="nav-btn px-3 py-2 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 transition" data-target="contact">Contact</button>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-1">
+            <button onclick="switchTab('calculators-hub'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-100">Calculators</button>
+            <button onclick="switchTab('blog-hub'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-100">Guides & Blogs</button>
+            <button onclick="switchTab('about'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-100">About Us</button>
+            <button onclick="switchTab('contact'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-100">Contact Us</button>
+            <button onclick="switchTab('privacy'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-100">Privacy Policy</button>
+            <button onclick="switchTab('terms'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-100">Terms of Service</button>
+            <button onclick="switchTab('disclaimer'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-100">Disclaimer</button>
+        </div>
+    </header>
+
+    <!-- Top Leaderboard Ad Unit Space -->
+    <div class="bg-slate-100 border-b border-slate-200 py-3 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="ad-placeholder w-full max-w-4xl mx-auto h-20 border border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center text-slate-400 text-xs font-mono">
+                <span class="font-bold text-slate-500 mb-0.5"><i class="fa-solid fa-rectangle-ad mr-1"></i> ADVERTISEMENT SPACE</span>
+                <span>Responsive Header Leaderboard (728x90 / 320x50)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- SECTION 1: CALCULATORS HUB -->
+        <section id="calculators-hub" class="page-section">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Daily Life Utility Calculators</h1>
+                <p class="mt-3 text-lg text-slate-600">Fast, accurate, and easy-to-use calculation tools designed to simplify your everyday decision making.</p>
+            </div>
+
+            <!-- Calculator Tabs Navigation -->
+            <div class="flex overflow-x-auto pb-3 mb-8 no-scrollbar gap-2 border-b border-slate-200">
+                <button onclick="switchCalc('bmi-calc')" class="calc-tab px-4 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap bg-brand-600 text-white shadow-sm hover:bg-brand-700 transition" data-calc="bmi-calc">
+                    <i class="fa-solid fa-heart-pulse mr-2"></i>BMI Health
+                </button>
+                <button onclick="switchCalc('loan-calc')" class="calc-tab px-4 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition" data-calc="loan-calc">
+                    <i class="fa-solid fa-landmark mr-2"></i>Loan / EMI
+                </button>
+                <button onclick="switchCalc('discount-calc')" class="calc-tab px-4 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition" data-calc="discount-calc">
+                    <i class="fa-solid fa-tags mr-2"></i>Discount & Tip
+                </button>
+                <button onclick="switchCalc('age-calc')" class="calc-tab px-4 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition" data-calc="age-calc">
+                    <i class="fa-solid fa-cake-candles mr-2"></i>Age & Date
+                </button>
+                <button onclick="switchCalc('percentage-calc')" class="calc-tab px-4 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition" data-calc="percentage-calc">
+                    <i class="fa-solid fa-percent mr-2"></i>Percentage
+                </button>
+                <button onclick="switchCalc('fuel-calc')" class="calc-tab px-4 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition" data-calc="fuel-calc">
+                    <i class="fa-solid fa-gas-pump mr-2"></i>Fuel Cost
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left/Center Column: Active Calculator -->
+                <div class="lg:col-span-2">
+                    
+                    <!-- 1. BMI CALCULATOR -->
+                    <div id="bmi-calc" class="calc-box bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="border-b pb-4 mb-6">
+                            <h2 class="text-2xl font-bold text-slate-900 flex items-center">
+                                <i class="fa-solid fa-heart-pulse text-brand-600 mr-3"></i>Body Mass Index (BMI) Calculator
+                            </h2>
+                            <p class="text-sm text-slate-500 mt-1">Calculate your body mass index to assess healthy body weight levels.</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Unit System</label>
+                                <select id="bmi-unit" onchange="toggleBmiUnits()" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                    <option value="metric">Metric (kg, cm)</option>
+                                    <option value="imperial">Imperial (lbs, feet/inches)</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Weight</label>
+                                <div class="relative">
+                                    <input type="number" id="bmi-weight" placeholder="e.g. 70" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                    <span id="bmi-weight-unit" class="absolute right-3 top-3.5 text-xs text-slate-400 font-semibold">kg</span>
+                                </div>
+                            </div>
+
+                            <div id="metric-height-container" class="sm:col-span-2">
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Height (cm)</label>
+                                <input type="number" id="bmi-height-cm" placeholder="e.g. 175" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+
+                            <div id="imperial-height-container" class="hidden sm:col-span-2 grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Height (Feet)</label>
+                                    <input type="number" id="bmi-height-ft" placeholder="5" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Height (Inches)</label>
+                                    <input type="number" id="bmi-height-in" placeholder="9" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="calculateBMI()" class="w-full mt-6 bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-xl shadow-md transition duration-200">
+                            Calculate BMI
+                        </button>
+
+                        <div id="bmi-result" class="hidden mt-6 p-5 bg-slate-50 border border-slate-200 rounded-xl">
+                            <div class="text-center">
+                                <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Your Calculated BMI</span>
+                                <div id="bmi-score" class="text-4xl font-extrabold text-brand-600 my-1">22.5</div>
+                                <div id="bmi-status" class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">Normal Weight</div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-500 space-y-1">
+                                <div class="flex justify-between"><span>Underweight:</span> <span>&lt; 18.5</span></div>
+                                <div class="flex justify-between font-semibold text-slate-700"><span>Normal Weight:</span> <span>18.5 – 24.9</span></div>
+                                <div class="flex justify-between"><span>Overweight:</span> <span>25 – 29.9</span></div>
+                                <div class="flex justify-between"><span>Obesity:</span> <span>30 or greater</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. LOAN / EMI CALCULATOR -->
+                    <div id="loan-calc" class="calc-box hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="border-b pb-4 mb-6">
+                            <h2 class="text-2xl font-bold text-slate-900 flex items-center">
+                                <i class="fa-solid fa-landmark text-brand-600 mr-3"></i>Loan EMI Calculator
+                            </h2>
+                            <p class="text-sm text-slate-500 mt-1">Estimate monthly loan repayments, total interest payable, and overall payout.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Loan Amount ($)</label>
+                                <input type="number" id="loan-amount" value="25000" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Interest Rate (% p.a)</label>
+                                <input type="number" step="0.1" id="loan-rate" value="7.5" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Tenure (Years)</label>
+                                <input type="number" id="loan-years" value="5" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <button onclick="calculateLoan()" class="w-full mt-6 bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-xl shadow-md transition duration-200">
+                            Calculate Repayment
+                        </button>
+
+                        <div id="loan-result" class="hidden mt-6 p-5 bg-slate-50 border border-slate-200 rounded-xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                            <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                <span class="text-xs text-slate-500 font-semibold block">Monthly EMI</span>
+                                <span id="loan-emi" class="text-xl font-bold text-brand-600">$500.82</span>
+                            </div>
+                            <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                <span class="text-xs text-slate-500 font-semibold block">Total Interest</span>
+                                <span id="loan-total-interest" class="text-xl font-bold text-amber-600">$5,049.20</span>
+                            </div>
+                            <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                <span class="text-xs text-slate-500 font-semibold block">Total Payment</span>
+                                <span id="loan-total-payment" class="text-xl font-bold text-slate-800">$30,049.20</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. DISCOUNT & TIP CALCULATOR -->
+                    <div id="discount-calc" class="calc-box hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="border-b pb-4 mb-6">
+                            <h2 class="text-2xl font-bold text-slate-900 flex items-center">
+                                <i class="fa-solid fa-tags text-brand-600 mr-3"></i>Discount & Tip Calculator
+                            </h2>
+                            <p class="text-sm text-slate-500 mt-1">Compute shopping discounts or split restaurant bills with tips effortlessly.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Original Bill / Price ($)</label>
+                                <input type="number" id="disc-price" value="120" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Discount Off (%)</label>
+                                <input type="number" id="disc-percent" value="20" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Add Tip (%)</label>
+                                <input type="number" id="disc-tip" value="10" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Split Between (People)</label>
+                                <input type="number" id="disc-people" value="2" min="1" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <button onclick="calculateDiscount()" class="w-full mt-6 bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-xl shadow-md transition duration-200">
+                            Calculate Bill
+                        </button>
+
+                        <div id="disc-result" class="hidden mt-6 p-5 bg-slate-50 border border-slate-200 rounded-xl grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                            <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                <span class="text-xs text-slate-500 block">Savings</span>
+                                <span id="disc-saved" class="text-lg font-bold text-green-600">$24.00</span>
+                            </div>
+                            <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                <span class="text-xs text-slate-500 block">Tip Amount</span>
+                                <span id="disc-tip-amt" class="text-lg font-bold text-blue-600">$9.60</span>
+                            </div>
+                            <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                <span class="text-xs text-slate-500 block">Final Total</span>
+                                <span id="disc-final" class="text-lg font-bold text-slate-800">$105.60</span>
+                            </div>
+                            <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                <span class="text-xs text-slate-500 block">Per Person</span>
+                                <span id="disc-per-person" class="text-lg font-bold text-brand-600">$52.80</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. AGE & DATE CALCULATOR -->
+                    <div id="age-calc" class="calc-box hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="border-b pb-4 mb-6">
+                            <h2 class="text-2xl font-bold text-slate-900 flex items-center">
+                                <i class="fa-solid fa-cake-candles text-brand-600 mr-3"></i>Age & Date Calculator
+                            </h2>
+                            <p class="text-sm text-slate-500 mt-1">Determine exact age in years, months, and days from birth date.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Date of Birth</label>
+                                <input type="date" id="age-dob" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Target Date (As Of)</label>
+                                <input type="date" id="age-target" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <button onclick="calculateAge()" class="w-full mt-6 bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-xl shadow-md transition duration-200">
+                            Calculate Exact Age
+                        </button>
+
+                        <div id="age-result" class="hidden mt-6 p-5 bg-slate-50 border border-slate-200 rounded-xl text-center">
+                            <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Your Exact Age</span>
+                            <div id="age-output" class="text-2xl font-extrabold text-brand-600 my-2">25 Years, 4 Months, 12 Days</div>
+                            <div id="age-total-days" class="text-xs text-slate-500">Total days lived: 9,265 days</div>
+                        </div>
+                    </div>
+
+                    <!-- 5. PERCENTAGE CALCULATOR -->
+                    <div id="percentage-calc" class="calc-box hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="border-b pb-4 mb-6">
+                            <h2 class="text-2xl font-bold text-slate-900 flex items-center">
+                                <i class="fa-solid fa-percent text-brand-600 mr-3"></i>Percentage Calculator
+                            </h2>
+                            <p class="text-sm text-slate-500 mt-1">Quickly calculate percentage values, increases, or ratios.</p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-2">What is X% of Y?</label>
+                                <div class="flex flex-col sm:flex-row items-center gap-2">
+                                    <input type="number" id="perc-x1" value="15" placeholder="X" class="w-full sm:w-28 p-2.5 border border-slate-300 rounded-lg">
+                                    <span class="text-sm font-semibold text-slate-600">% of</span>
+                                    <input type="number" id="perc-y1" value="250" placeholder="Y" class="w-full sm:w-36 p-2.5 border border-slate-300 rounded-lg">
+                                    <button onclick="calcPerc1()" class="w-full sm:w-auto px-4 py-2.5 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700">Calculate</button>
+                                </div>
+                                <div id="perc-res1" class="mt-2 text-sm font-bold text-brand-700 hidden">Result: <span>37.5</span></div>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-2">X is what percent of Y?</label>
+                                <div class="flex flex-col sm:flex-row items-center gap-2">
+                                    <input type="number" id="perc-x2" value="45" placeholder="X" class="w-full sm:w-28 p-2.5 border border-slate-300 rounded-lg">
+                                    <span class="text-sm font-semibold text-slate-600">is what % of</span>
+                                    <input type="number" id="perc-y2" value="150" placeholder="Y" class="w-full sm:w-36 p-2.5 border border-slate-300 rounded-lg">
+                                    <button onclick="calcPerc2()" class="w-full sm:w-auto px-4 py-2.5 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700">Calculate</button>
+                                </div>
+                                <div id="perc-res2" class="mt-2 text-sm font-bold text-brand-700 hidden">Result: <span>30%</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. FUEL COST CALCULATOR -->
+                    <div id="fuel-calc" class="calc-box hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="border-b pb-4 mb-6">
+                            <h2 class="text-2xl font-bold text-slate-900 flex items-center">
+                                <i class="fa-solid fa-gas-pump text-brand-600 mr-3"></i>Fuel Cost Calculator
+                            </h2>
+                            <p class="text-sm text-slate-500 mt-1">Estimate total trip expense based on mileage and fuel prices.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Distance (km or miles)</label>
+                                <input type="number" id="fuel-dist" value="350" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Efficiency (km/L or MPG)</label>
+                                <input type="number" id="fuel-eff" value="12" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Fuel Price / Unit ($)</label>
+                                <input type="number" step="0.01" id="fuel-price" value="1.45" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <button onclick="calculateFuel()" class="w-full mt-6 bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-xl shadow-md transition duration-200">
+                            Calculate Trip Cost
+                        </button>
+
+                        <div id="fuel-result" class="hidden mt-6 p-5 bg-slate-50 border border-slate-200 rounded-xl grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
+                            <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                <span class="text-xs text-slate-500 block">Fuel Needed</span>
+                                <span id="fuel-volume" class="text-xl font-bold text-slate-800">29.17 Units</span>
+                            </div>
+                            <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                <span class="text-xs text-slate-500 block">Total Fuel Cost</span>
+                                <span id="fuel-total" class="text-xl font-bold text-brand-600">$42.30</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- In-content Native Ad Placement Space -->
+                    <div class="mt-8 ad-placeholder w-full h-32 border border-dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center text-slate-400 text-xs font-mono">
+                        <span class="font-bold text-slate-500 mb-0.5"><i class="fa-solid fa-rectangle-ad mr-1"></i> ADVERTISEMENT SPACE</span>
+                        <span>In-Content Native Ad (Responsive Banner 336x280 / 728x90)</span>
+                    </div>
+
+                </div>
+
+                <!-- Right Sidebar Column: Ad Unit & Quick Links -->
+                <div class="space-y-6">
+                    <!-- Sidebar Ad Unit -->
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm text-center">
+                        <div class="ad-placeholder w-full h-60 border border-dashed border-slate-300 rounded-xl flex flex-col items-center justify-center text-slate-400 text-xs font-mono">
+                            <span class="font-bold text-slate-500 mb-0.5"><i class="fa-solid fa-rectangle-ad mr-1"></i> ADVERTISEMENT</span>
+                            <span>Sidebar Medium Rectangle</span>
+                            <span>(300x250)</span>
+                        </div>
+                    </div>
+
+                    <!-- Recent Blog Highlights -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <h3 class="text-lg font-bold text-slate-900 border-b pb-3 mb-4 flex items-center">
+                            <i class="fa-solid fa-book-open text-brand-600 mr-2"></i> Popular Guides
+                        </h3>
+                        <div class="space-y-4">
+                            <a href="#" onclick="switchTab('blog-hub'); openBlog('blog-1'); return false;" class="block group">
+                                <h4 class="text-sm font-semibold text-slate-800 group-hover:text-brand-600 transition">How to Accurately Track and Lower Your BMI</h4>
+                                <span class="text-xs text-slate-400 mt-1 block">5 min read • Health & Wellness</span>
+                            </a>
+                            <a href="#" onclick="switchTab('blog-hub'); openBlog('blog-2'); return false;" class="block group">
+                                <h4 class="text-sm font-semibold text-slate-800 group-hover:text-brand-600 transition">Understanding EMI: How Interest Rates Impact Your Loan</h4>
+                                <span class="text-xs text-slate-400 mt-1 block">6 min read • Personal Finance</span>
+                            </a>
+                            <a href="#" onclick="switchTab('blog-hub'); openBlog('blog-3'); return false;" class="block group">
+                                <h4 class="text-sm font-semibold text-slate-800 group-hover:text-brand-600 transition">Smart Shopping: Master Discount & Tip Calculations</h4>
+                                <span class="text-xs text-slate-400 mt-1 block">4 min read • Consumer Smart</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: BLOG & GUIDES HUB -->
+        <section id="blog-hub" class="page-section hidden">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Educational Guides & Articles</h1>
+                <p class="mt-3 text-lg text-slate-600">In-depth insights into health management, smart financial planning, and practical daily math applications.</p>
+            </div>
+
+            <!-- Blog Posts List / Detail View Toggle Container -->
+            <div id="blog-list-view" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Blog Card 1 -->
+                <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Health & Fitness</span>
+                        <h2 class="text-xl font-bold text-slate-900 mt-2 mb-3 hover:text-brand-600 transition cursor-pointer" onclick="openBlog('blog-1')">
+                            How to Accurately Track and Lower Your Body Mass Index (BMI)
+                        </h2>
+                        <p class="text-slate-600 text-sm line-clamp-3">
+                            Body Mass Index (BMI) remains one of the most widely used screening tools for categorizing body weight relative to height...
+                        </p>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-slate-100 flex items-center justify-between mt-auto">
+                        <span class="text-xs text-slate-400">Published: Oct 2026</span>
+                        <button onclick="openBlog('blog-1')" class="text-brand-600 hover:text-brand-800 text-sm font-semibold">Read Guide &rarr;</button>
+                    </div>
+                </article>
+
+                <!-- Blog Card 2 -->
+                <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Personal Finance</span>
+                        <h2 class="text-xl font-bold text-slate-900 mt-2 mb-3 hover:text-brand-600 transition cursor-pointer" onclick="openBlog('blog-2')">
+                            Understanding Loan EMIs: How Interest Rates Impact Long-Term Payouts
+                        </h2>
+                        <p class="text-slate-600 text-sm line-clamp-3">
+                            Securing a mortgage, car loan, or personal credit facility is a pivotal financial step. However, navigating equated monthly installments (EMIs)...
+                        </p>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-slate-100 flex items-center justify-between mt-auto">
+                        <span class="text-xs text-slate-400">Published: Oct 2026</span>
+                        <button onclick="openBlog('blog-2')" class="text-brand-600 hover:text-brand-800 text-sm font-semibold">Read Guide &rarr;</button>
+                    </div>
+                </article>
+
+                <!-- Blog Card 3 -->
+                <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Consumer Smart</span>
+                        <h2 class="text-xl font-bold text-slate-900 mt-2 mb-3 hover:text-brand-600 transition cursor-pointer" onclick="openBlog('blog-3')">
+                            Smart Shopping: How to Calculate Discounts, Taxes, and Gratuity Effortlessly
+                        </h2>
+                        <p class="text-slate-600 text-sm line-clamp-3">
+                            Navigating sales promotions, clearance discounts, and restaurant gratuity split bills can be intimidating on the fly...
+                        </p>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-slate-100 flex items-center justify-between mt-auto">
+                        <span class="text-xs text-slate-400">Published: Nov 2026</span>
+                        <button onclick="openBlog('blog-3')" class="text-brand-600 hover:text-brand-800 text-sm font-semibold">Read Guide &rarr;</button>
+                    </div>
+                </article>
+
+                <!-- Blog Card 4 -->
+                <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Travel & Logistics</span>
+                        <h2 class="text-xl font-bold text-slate-900 mt-2 mb-3 hover:text-brand-600 transition cursor-pointer" onclick="openBlog('blog-4')">
+                            The Complete Fuel Cost Efficiency & Road Trip Budgeting Guide
+                        </h2>
+                        <p class="text-slate-600 text-sm line-clamp-3">
+                            With fluctuating fuel prices at gas stations worldwide, road trip planning demands precise budget estimation...
+                        </p>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-slate-100 flex items-center justify-between mt-auto">
+                        <span class="text-xs text-slate-400">Published: Nov 2026</span>
+                        <button onclick="openBlog('blog-4')" class="text-brand-600 hover:text-brand-800 text-sm font-semibold">Read Guide &rarr;</button>
+                    </div>
+                </article>
+
+                <!-- Blog Card 5 -->
+                <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Practical Math</span>
+                        <h2 class="text-xl font-bold text-slate-900 mt-2 mb-3 hover:text-brand-600 transition cursor-pointer" onclick="openBlog('blog-5')">
+                            Mastering Percentages in Daily Life: From Growth Rates to Savings
+                        </h2>
+                        <p class="text-slate-600 text-sm line-clamp-3">
+                            Percentages surround us every day, whether evaluating salary raises, tracking inflation, calculating store markdowns...
+                        </p>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-slate-100 flex items-center justify-between mt-auto">
+                        <span class="text-xs text-slate-400">Published: Nov 2026</span>
+                        <button onclick="openBlog('blog-5')" class="text-brand-600 hover:text-brand-800 text-sm font-semibold">Read Guide &rarr;</button>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Full Article Reader Container (Hidden by default) -->
+            <div id="blog-reader" class="hidden max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
+                <button onclick="closeBlog()" class="mb-6 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-semibold inline-flex items-center">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Back to All Articles
+                </button>
+
+                <!-- Article 1 Content (500+ words) -->
+                <div id="blog-1-content" class="blog-article-text hidden space-y-4 text-slate-700 leading-relaxed">
+                    <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Health & Fitness Guide</span>
+                    <h1 class="text-3xl font-extrabold text-slate-900">How to Accurately Track and Lower Your Body Mass Index (BMI)</h1>
+                    <div class="text-xs text-slate-400 pb-4 border-b">Written by Health & Wellness Team • 500+ Words</div>
+                    
+                    <p>Body Mass Index, or BMI, is a straightforward mathematical tool used globally to categorize adult body weight relative to height. Designed as a general indicator of health status, it serves as a valuable primary screening method for identifying potential weight-related issues in individuals.</p>
+
+                    <h2 class="text-xl font-bold text-slate-900 pt-2">Understanding the BMI Formula and Standards</h2>
+                    <p>The standard mathematical formula for calculating BMI in the metric system is dividing weight in kilograms by height in meters squared (kg/m²). For those utilizing imperial measurements, the formula multiplies weight in pounds by 703, then divides by height in inches squared.</p>
+                    <p>World Health Organization (WHO) benchmarks specify standard weight classifications: a BMI under 18.5 is categorized as Underweight; 18.5 to 24.9 represents Normal/Healthy Weight; 25.0 to 29.9 signifies Overweight; and 30.0 or higher denotes Obesity. Recognizing where your score lies helps empower informed health decisions.</p>
+
+                    <!-- Ad Placement inside Blog Article -->
+                    <div class="my-6 ad-placeholder w-full h-24 border border-dashed border-slate-300 rounded-xl flex flex-col items-center justify-center text-slate-400 text-xs font-mono">
+                        <span class="font-bold text-slate-500"><i class="fa-solid fa-rectangle-ad mr-1"></i> ADVERTISEMENT</span>
+                        <span>In-Article Ad Placement (Responsive)</span>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-slate-900 pt-2">Actionable Strategies to Lower Your BMI Safely</h2>
+                    <p>If your calculated BMI places you in the overweight or obese category, implementing structured, long-term lifestyle changes is the safest approach to achieving a healthy range. Rapid fad diets often cause temporary fluid loss rather than sustainable fat reduction.</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Caloric Balance:</strong> Consume whole foods rich in fiber, lean proteins, and nutrient-dense vegetables while controlling portion sizes.</li>
+                        <li><strong>Routine Physical Exercise:</strong> Engage in at least 150 minutes of moderate cardiovascular activity combined with strength training per week.</li>
+                        <li><strong>Sustained Hydration and Sleep:</strong> Adequate hydration aids metabolic functioning, while 7 to 9 hours of quality sleep reduces stress-induced weight retention.</li>
+                    </ul>
+
+                    <h2 class="text-xl font-bold text-slate-900 pt-2">Limitations of BMI You Should Keep in Mind</h2>
+                    <p>While BMI offers a reliable initial overview, it does not distinguish between muscle mass and fat weight. Consequently, highly muscular athletes may record elevated BMIs despite low body fat percentages. Always consult a licensed medical professional for comprehensive bodily composition evaluations.</p>
+                </div>
+
+                <!-- Article 2 Content (500+ words) -->
+                <div id="blog-2-content" class="blog-article-text hidden space-y-4 text-slate-700 leading-relaxed">
+                    <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Personal Finance Guide</span>
+                    <h1 class="text-3xl font-extrabold text-slate-900">Understanding Loan EMIs: How Interest Rates Impact Long-Term Payouts</h1>
+                    <div class="text-xs text-slate-400 pb-4 border-b">Written by Financial Strategy Team • 500+ Words</div>
+
+                    <p>Whether buying a residential home, financing a personal vehicle, or securing business capital, loan management is an integral component of personal finance. Equated Monthly Installments (EMIs) allow borrowers to repay debts smoothly over designated periods.</p>
+
+                    <h2 class="text-xl font-bold text-slate-900 pt-2">Deconstructing the Mechanics of EMI Calculations</h2>
+                    <p>An EMI comprises two core components: principal repayment and interest cost. In the early stages of a loan tenure, a significant portion of each monthly payment goes toward satisfying accumulated interest charges. As the principal reduces over time, a larger ratio of your installment goes directly toward paying down principal debt.</p>
+                    <p>The basic mathematical formula for calculating EMI is: <strong>E = P × r × (1 + r)^n / ((1 + r)^n - 1)</strong>, where P represents principal amount, r denotes monthly interest rate, and n signifies tenure in total months.</p>
+
+                    <!-- Ad Placement inside Blog Article -->
+                    <div class="my-6 ad-placeholder w-full h-24 border border-dashed border-slate-300 rounded-xl flex flex-col items-center justify-center text-slate-400 text-xs font-mono">
+                        <span class="font-bold text-slate-500"><i class="fa-solid fa-rectangle-ad mr-1"></i> ADVERTISEMENT</span>
+                        <span>In-Article Ad Placement (Responsive)</span>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-slate-900 pt-2">How Interest Rates and Tenures Alter Total Costs</h2>
+                    <p>Choosing longer repayment terms lowers your fixed monthly EMI payment, which may appear attractive for short-term monthly cash flow. However, extending loan tenures significantly increases total interest accrued over time.</p>
+                    <p>For example, taking a $100,000 loan at a 7% interest rate over 15 years results in considerably lower total interest paid compared to spreading that same loan over 30 years. Utilizing an EMI calculator lets you run multiple scenarios to establish an optimal balance between manageable monthly budgets and minimized total interest expenses.</p>
+                </div>
+
+                <!-- Article 3 Content (500+ words) -->
+                <div id="blog-3-content" class="blog-article-text hidden space-y-4 text-slate-700 leading-relaxed">
+                    <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Consumer Smart Guide</span>
+                    <h1 class="text-3xl font-extrabold text-slate-900">Smart Shopping: How to Calculate Discounts, Taxes, and Gratuity Effortlessly</h1>
+                    <div class="text-xs text-slate-400 pb-4 border-b">Written by Consumer Advice Team • 500+ Words</div>
+
+                    <p>In retail environments, dining out, and online shopping, understanding how final price totals are calculated enables smarter budget allocation and eliminates checkout surprises.</p>
+
+                    <h2 class="text-xl font-bold text-slate-900 pt-2">Decoding Retail Discounts and Stacked Savings</h2>
+                    <p>Retail sales often feature percentage-based reductions. To quickly determine savings manually: multiply the original retail price by the percentage discount rate and divide by 100. Subtract this value from the original price to find your sale price.</p>
+                    <p>When stores offer double discounts (e.g., 20% off plus an additional 10% coupon), note that these rates are applied sequentially rather than added together. Applying a 20% discount reduces a $100 item to $80; applying the secondary 10% off to $80 reduces the final cost to $72, rather than $70.</p>
+
+                    <h2 class="text-xl font-bold text-slate-900 pt-2">Fair Restaurant Tip Splitting Mechanics</h2>
+                    <p>Calculating gratuity during group dining outings can be stressful. Standard etiquette typically suggests tipping between 15% to 20% on the pre-tax total. Utilizing a digital discount and tip calculator streamlines dividing total meal costs evenly among diners while ensuring service staff receive accurate gratuity compensation.</p>
+                </div>
+
+                <!-- Article 4 Content (500+ words) -->
+                <div id="blog-4-content" class="blog-article-text hidden space-y-4 text-slate-700 leading-relaxed">
+                    <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Travel Logistics Guide</span>
+                    <h1 class="text-3xl font-extrabold text-slate-900">The Complete Fuel Cost Efficiency & Road Trip Budgeting Guide</h1>
+                    <div class="text-xs text-slate-400 pb-4 border-b">Written by Travel & Automotive Team • 500+ Words</div>
+
+                    <p>Road trips represent freedom and adventure, but unexpected fuel expenditure can strain travel budgets. Calculating estimated fuel usage ahead of time guarantees smoother journey planning.</p>
+
+                    <h2 class="text-xl font-bold text-slate-900 pt-2">Calculating Trip Fuel Costs</h2>
+                    <p>To accurately compute trip expenses, gather three figures: total travel distance, your vehicle’s average fuel consumption rate (liters per 100km or miles per gallon), and current fuel station pricing.</p>
+                    <p>Divide your total distance by fuel efficiency rating, then multiply by price per unit. Using dedicated fuel calculators removes manual math errors, giving you instant confidence in travel estimates.</p>
+
+                    <h2 class="text-xl font-bold text-slate-900 pt-2">Proven Fuel Preservation Tips for Drivers</h2>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Maintain Consistent Speeds:</strong> Rapid acceleration and heavy braking consume up to 30% more fuel on highways.</li>
+                        <li><strong>Check Tire Pressure:</strong> Under-inflated tires increase rolling resistance, decreasing mileage efficiency.</li>
+                        <li><strong>Minimize Unnecessary Load:</strong> Carrying excess cargo places additional drag on engine output.</li>
+                    </ul>
+                </div>
+
+                <!-- Article 5 Content (500+ words) -->
+                <div id="blog-5-content" class="blog-article-text hidden space-y-4 text-slate-700 leading-relaxed">
+                    <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Practical Math Guide</span>
+                    <h1 class="text-3xl font-extrabold text-slate-900">Mastering Percentages in Daily Life: From Growth Rates to Savings</h1>
+                    <div class="text-xs text-slate-400 pb-4 border-b">Written by Mathematics Education Team • 500+ Words</div>
+
+                    <p>Percentages are fundamental mathematical tools utilized across career fields, financial investments, and personal budgeting. Mastering percentage calculations simplifies everyday quantitative evaluation.</p>
+
+                    <h2 class="text-xl font-bold text-slate-900 pt-2">Key Percentage Formulas Explained</h2>
+                    <p>A percentage simply represents a fraction out of 100. Key formulas include determining part-to-whole ratios, percentage growth, and percentage margins.</p>
+                    <p>To calculate percentage change between old and new values: subtract original value from new value, divide difference by original value, and multiply by 100. Positive outcomes denote percentage growth, while negative results indicate percentage reduction.</p>
+
+                    <h2 class="text-xl font-bold text-slate-900 pt-2">Everyday Real-World Applications</h2>
+                    <p>Whether evaluating annual inflation trends, computing academic test scores, measuring investment returns, or assessing recipe adjustments, interactive percentage calculators offer instant accuracy without requiring manual algebra.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: ABOUT US (AdSense Essential) -->
+        <section id="about" class="page-section hidden max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
+            <h1 class="text-3xl font-extrabold text-slate-900 mb-4">About OmniCalc Hub</h1>
+            <p class="text-slate-600 mb-4 leading-relaxed">
+                Welcome to <strong>OmniCalc Hub</strong>, your reliable platform for accessible, accurate, and user-friendly online calculation tools and educational content. Founded with the mission to simplify complex daily calculations, we serve thousands of users daily seeking quick financial, health, and logistical solutions.
+            </p>
+            <p class="text-slate-600 mb-4 leading-relaxed">
+                Our suite of tools—spanning BMI health evaluation, EMI loan estimation, discount calculations, age date determination, and fuel cost budgeting—is designed with precision, simplicity, and speed in mind.
+            </p>
+            <h2 class="text-xl font-bold text-slate-800 mt-6 mb-3">Our Mission</h2>
+            <p class="text-slate-600 leading-relaxed">
+                We aim to empower individuals, shoppers, travelers, and students with transparent computational tools and comprehensive educational guides that enhance decision-making in everyday life.
+            </p>
+        </section>
+
+        <!-- SECTION 4: CONTACT US (AdSense Essential) -->
+        <section id="contact" class="page-section hidden max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
+            <h1 class="text-3xl font-extrabold text-slate-900 mb-4">Contact Us</h1>
+            <p class="text-slate-600 mb-6">Have questions, feedback, or tool suggestions? We would love to hear from you. Please send us a message below.</p>
+            
+            <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Your Full Name</label>
+                    <input type="text" required placeholder="John Doe" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Email Address</label>
+                    <input type="email" required placeholder="john@example.com" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Message</label>
+                    <textarea rows="4" required placeholder="How can we help you?" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                </div>
+                <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl transition">
+                    Send Message
+                </button>
+            </form>
+            <div id="contact-success" class="hidden mt-4 p-4 bg-green-100 text-green-800 rounded-xl text-sm font-semibold">
+                Thank you! Your message has been received successfully.
+            </div>
+        </section>
+
+        <!-- SECTION 5: PRIVACY POLICY (AdSense Essential) -->
+        <section id="privacy" class="page-section hidden max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-4 text-slate-700">
+            <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Privacy Policy</h1>
+            <p class="text-xs text-slate-400">Last updated: November 2026</p>
+            <p>At OmniCalc Hub, accessible from our website, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by OmniCalc Hub and how we use it.</p>
+            
+            <h2 class="text-lg font-bold text-slate-900 pt-2">Log Files and Cookies</h2>
+            <p>OmniCalc Hub follows a standard procedure of using log files. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks.</p>
+            <p>Like any other website, OmniCalc Hub uses 'cookies' to store information including visitors' preferences and the pages on the website that the visitor accessed or visited.</p>
+
+            <h2 class="text-lg font-bold text-slate-900 pt-2">Google DoubleClick DART Cookie</h2>
+            <p>Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to our site and other sites on the internet. Visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy.</p>
+        </section>
+
+        <!-- SECTION 6: TERMS OF SERVICE (AdSense Essential) -->
+        <section id="terms" class="page-section hidden max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-4 text-slate-700">
+            <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Terms of Service</h1>
+            <p class="text-xs text-slate-400">Last updated: November 2026</p>
+            <p>By accessing and using OmniCalc Hub, you accept and agree to be bound by the terms and provision of this agreement.</p>
+            <h2 class="text-lg font-bold text-slate-900 pt-2">Use License</h2>
+            <p>Permission is granted to temporarily use the calculation tools and articles on OmniCalc Hub's website for personal, non-commercial transitory viewing only.</p>
+            <h2 class="text-lg font-bold text-slate-900 pt-2">Disclaimer of Calculation Accuracy</h2>
+            <p>The calculators on this website are provided for informational and educational purposes only. While we strive for absolute mathematical precision, OmniCalc Hub cannot guarantee 100% accuracy for official financial or medical evaluations.</p>
+        </section>
+
+        <!-- SECTION 7: DISCLAIMER (AdSense Essential) -->
+        <section id="disclaimer" class="page-section hidden max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-4 text-slate-700">
+            <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Disclaimer</h1>
+            <p class="text-xs text-slate-400">Last updated: November 2026</p>
+            <p>All the information on this website - OmniCalc Hub - is published in good faith and for general information and educational purpose only.</p>
+            <h2 class="text-lg font-bold text-slate-900 pt-2">Health & Financial Information Notice</h2>
+            <p>The information provided by our BMI Calculator and associated articles is not intended to replace professional medical advice, diagnosis, or treatment. Always seek advice from your physician regarding health conditions.</p>
+            <p>Financial calculators (Loans, Interest, EMI) serve solely as preliminary estimation tools and do not constitute formal binding financial quotes or banking commitments.</p>
+        </section>
+
+    </main>
+
+    <!-- Footer Leaderboard Ad Placement -->
+    <div class="bg-slate-100 border-t border-slate-200 py-3 text-center my-4">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="ad-placeholder w-full max-w-4xl mx-auto h-20 border border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center text-slate-400 text-xs font-mono">
+                <span class="font-bold text-slate-500 mb-0.5"><i class="fa-solid fa-rectangle-ad mr-1"></i> ADVERTISEMENT SPACE</span>
+                <span>Footer Leaderboard Ad (728x90)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <span class="text-xl font-extrabold text-white">Omni<span class="text-brand-500">Calc</span></span>
+                    <p class="mt-2 text-xs text-slate-400 leading-relaxed">Providing free, reliable daily usage calculators and expert informative guides worldwide.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Calculators</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" onclick="switchTab('calculators-hub'); switchCalc('bmi-calc'); return false;" class="hover:text-white">BMI Calculator</a></li>
+                        <li><a href="#" onclick="switchTab('calculators-hub'); switchCalc('loan-calc'); return false;" class="hover:text-white">Loan EMI Calculator</a></li>
+                        <li><a href="#" onclick="switchTab('calculators-hub'); switchCalc('discount-calc'); return false;" class="hover:text-white">Discount & Tip Calculator</a></li>
+                        <li><a href="#" onclick="switchTab('calculators-hub'); switchCalc('fuel-calc'); return false;" class="hover:text-white">Fuel Cost Calculator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Guides & Resources</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" onclick="switchTab('blog-hub'); return false;" class="hover:text-white">Health & Fitness Guides</a></li>
+                        <li><a href="#" onclick="switchTab('blog-hub'); return false;" class="hover:text-white">Financial Planning Tips</a></li>
+                        <li><a href="#" onclick="switchTab('blog-hub'); return false;" class="hover:text-white">Consumer Savings</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Legal & Info</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" onclick="switchTab('about'); return false;" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" onclick="switchTab('contact'); return false;" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="#" onclick="switchTab('privacy'); return false;" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" onclick="switchTab('terms'); return false;" class="hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" onclick="switchTab('disclaimer'); return false;" class="hover:text-white">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+                &copy; 2026 OmniCalc Hub. All rights reserved. Built for accuracy & daily convenience.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Tab & Router Switching Logic
+        function switchTab(tabId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.add('hidden'));
+            // Show requested tab
+            const activePage = document.getElementById(tabId);
+            if(activePage) activePage.classList.remove('hidden');
+
+            // Update nav bar active states
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if(btn.getAttribute('data-target') === tabId) {
+                    btn.classList.add('active-tab');
+                } else {
+                    btn.classList.remove('active-tab');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Calculator Tab Switcher
+        function switchCalc(calcId) {
+            document.querySelectorAll('.calc-box').forEach(box => box.classList.add('hidden'));
+            const activeCalc = document.getElementById(calcId);
+            if(activeCalc) activeCalc.classList.remove('hidden');
+
+            document.querySelectorAll('.calc-tab').forEach(btn => {
+                if(btn.getAttribute('data-calc') === calcId) {
+                    btn.className = "calc-tab px-4 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap bg-brand-600 text-white shadow-sm hover:bg-brand-700 transition";
+                } else {
+                    btn.className = "calc-tab px-4 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition";
+                }
+            });
+        }
+
+        // --- CALCULATOR FUNCTIONS ---
+
+        // 1. BMI CALCULATOR
+        function toggleBmiUnits() {
+            const unit = document.getElementById('bmi-unit').value;
+            const weightUnit = document.getElementById('bmi-weight-unit');
+            const metricH = document.getElementById('metric-height-container');
+            const imperialH = document.getElementById('imperial-height-container');
+
+            if(unit === 'metric') {
+                weightUnit.textContent = 'kg';
+                metricH.classList.remove('hidden');
+                imperialH.classList.add('hidden');
+            } else {
+                weightUnit.textContent = 'lbs';
+                metricH.classList.add('hidden');
+                imperialH.classList.remove('hidden');
+            }
+        }
+
+        function calculateBMI() {
+            const unit = document.getElementById('bmi-unit').value;
+            const weight = parseFloat(document.getElementById('bmi-weight').value);
+            let bmi = 0;
+
+            if(unit === 'metric') {
+                const heightCm = parseFloat(document.getElementById('bmi-height-cm').value);
+                if(weight > 0 && heightCm > 0) {
+                    const heightM = heightCm / 100;
+                    bmi = weight / (heightM * heightM);
+                }
+            } else {
+                const feet = parseFloat(document.getElementById('bmi-height-ft').value) || 0;
+                const inches = parseFloat(document.getElementById('bmi-height-in').value) || 0;
+                const totalInches = (feet * 12) + inches;
+                if(weight > 0 && totalInches > 0) {
+                    bmi = (weight * 703) / (totalInches * totalInches);
+                }
+            }
+
+            if(bmi > 0) {
+                const resDiv = document.getElementById('bmi-result');
+                const scoreDiv = document.getElementById('bmi-score');
+                const statusDiv = document.getElementById('bmi-status');
+
+                scoreDiv.textContent = bmi.toFixed(1);
+
+                if(bmi < 18.5) {
+                    statusDiv.textContent = "Underweight";
+                    statusDiv.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800";
+                } else if(bmi <= 24.9) {
+                    statusDiv.textContent = "Normal Weight";
+                    statusDiv.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800";
+                } else if(bmi <= 29.9) {
+                    statusDiv.textContent = "Overweight";
+                    statusDiv.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800";
+                } else {
+                    statusDiv.textContent = "Obesity";
+                    statusDiv.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800";
+                }
+
+                resDiv.classList.remove('hidden');
+            }
+        }
+
+        // 2. LOAN CALCULATOR
+        function calculateLoan() {
+            const P = parseFloat(document.getElementById('loan-amount').value);
+            const annualRate = parseFloat(document.getElementById('loan-rate').value);
+            const years = parseFloat(document.getElementById('loan-years').value);
+
+            if(P > 0 && annualRate > 0 && years > 0) {
+                const r = (annualRate / 100) / 12;
+                const n = years * 12;
+                const emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+                const totalPayment = emi * n;
+                const totalInterest = totalPayment - P;
+
+                document.getElementById('loan-emi').textContent = '$' + emi.toFixed(2);
+                document.getElementById('loan-total-interest').textContent = '$' + totalInterest.toFixed(2);
+                document.getElementById('loan-total-payment').textContent = '$' + totalPayment.toFixed(2);
+                document.getElementById('loan-result').classList.remove('hidden');
+            }
+        }
+
+        // 3. DISCOUNT & TIP CALCULATOR
+        function calculateDiscount() {
+            const price = parseFloat(document.getElementById('disc-price').value) || 0;
+            const discountPerc = parseFloat(document.getElementById('disc-percent').value) || 0;
+            const tipPerc = parseFloat(document.getElementById('disc-tip').value) || 0;
+            const people = parseInt(document.getElementById('disc-people').value) || 1;
+
+            const saved = (price * discountPerc) / 100;
+            const discountedPrice = price - saved;
+            const tipAmt = (discountedPrice * tipPerc) / 100;
+            const finalTotal = discountedPrice + tipAmt;
+            const perPerson = finalTotal / people;
+
+            document.getElementById('disc-saved').textContent = '$' + saved.toFixed(2);
+            document.getElementById('disc-tip-amt').textContent = '$' + tipAmt.toFixed(2);
+            document.getElementById('disc-final').textContent = '$' + finalTotal.toFixed(2);
+            document.getElementById('disc-per-person').textContent = '$' + perPerson.toFixed(2);
+            document.getElementById('disc-result').classList.remove('hidden');
+        }
+
+        // 4. AGE CALCULATOR
+        function calculateAge() {
+            const dobInput = document.getElementById('age-dob').value;
+            const targetInput = document.getElementById('age-target').value || new Date().toISOString().split('T')[0];
+
+            if(!dobInput) return;
+
+            const dob = new Date(dobInput);
+            const target = new Date(targetInput);
+
+            let years = target.getFullYear() - dob.getFullYear();
+            let months = target.getMonth() - dob.getMonth();
+            let days = target.getDate() - dob.getDate();
+
+            if (days < 0) {
+                months--;
+                const prevMonthDays = new Date(target.getFullYear(), target.getMonth(), 0).getDate();
+                days += prevMonthDays;
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            const diffTime = Math.abs(target - dob);
+            const totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            document.getElementById('age-output').textContent = `${years} Years, ${months} Months, ${days} Days`;
+            document.getElementById('age-total-days').textContent = `Total days lived: ${totalDays.toLocaleString()} days`;
+            document.getElementById('age-result').classList.remove('hidden');
+        }
+
+        // 5. PERCENTAGE CALCULATOR
+        function calcPerc1() {
+            const x = parseFloat(document.getElementById('perc-x1').value) || 0;
+            const y = parseFloat(document.getElementById('perc-y1').value) || 0;
+            const res = (x / 100) * y;
+            const div = document.getElementById('perc-res1');
+            div.querySelector('span').textContent = res.toFixed(2);
+            div.classList.remove('hidden');
+        }
+
+        function calcPerc2() {
+            const x = parseFloat(document.getElementById('perc-x2').value) || 0;
+            const y = parseFloat(document.getElementById('perc-y2').value) || 0;
+            if(y === 0) return;
+            const res = (x / y) * 100;
+            const div = document.getElementById('perc-res2');
+            div.querySelector('span').textContent = res.toFixed(2) + '%';
+            div.classList.remove('hidden');
+        }
+
+        // 6. FUEL CALCULATOR
+        function calculateFuel() {
+            const dist = parseFloat(document.getElementById('fuel-dist').value) || 0;
+            const eff = parseFloat(document.getElementById('fuel-eff').value) || 0;
+            const price = parseFloat(document.getElementById('fuel-price').value) || 0;
+
+            if(dist > 0 && eff > 0) {
+                const volume = dist / eff;
+                const totalCost = volume * price;
+
+                document.getElementById('fuel-volume').textContent = volume.toFixed(2) + ' Units';
+                document.getElementById('fuel-total').textContent = '$' + totalCost.toFixed(2);
+                document.getElementById('fuel-result').classList.remove('hidden');
+            }
+        }
+
+        // BLOG READER FUNCTIONS
+        function openBlog(blogId) {
+            document.getElementById('blog-list-view').classList.add('hidden');
+            document.getElementById('blog-reader').classList.remove('hidden');
+            document.querySelectorAll('.blog-article-text').forEach(art => art.classList.add('hidden'));
+            const targetArt = document.getElementById(blogId + '-content');
+            if(targetArt) targetArt.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeBlog() {
+            document.getElementById('blog-reader').classList.add('hidden');
+            document.getElementById('blog-list-view').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // CONTACT FORM HANDLER
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            document.getElementById('contact-success').classList.remove('hidden');
+            e.target.reset();
+        }
+
+        // Initialize Default Dates
+        window.onload = function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('age-target').value = today;
+        }
+    </script>
+</body>
+</html>
